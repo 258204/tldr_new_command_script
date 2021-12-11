@@ -21,7 +21,20 @@ then
 	exit 1
 fi
 
-tldrl $1
+
+if command -v tldrl >/dev/null ; then
+	tldrl $1 
+	
+	else 
+		echo "TLDR linter not installed!"
+
+	if [ $? -ne 0 ];
+	then
+		echo "Lint error!"
+		exit 1
+	fi
+fi
+
 if [ $? -ne 0 ];
 then
 	echo "Lint error!"
