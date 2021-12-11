@@ -35,11 +35,6 @@ if command -v tldrl >/dev/null ; then
 	fi
 fi
 
-if [ $? -ne 0 ];
-then
-	echo "Lint error!"
-	exit 1
-fi
 
 base="$(basename $1 .md)"
 git checkout -b $base
