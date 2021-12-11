@@ -2,7 +2,7 @@
 # Lints, commits, and  pushes a new command to an appropriately named branch.
 
 display_usage() {
-	echo -e "\nUsage: $0 {{command.md}} \n"
+	echo -e "\nUsage:\n bash $0 {{command.md}} \n"
 	}
 
 while getopts :h option; do
