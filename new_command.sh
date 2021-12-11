@@ -44,5 +44,5 @@ fi
 base="$(basename $1 .md)"
 git checkout -b $base
 git add $1
-git commit -S -m "$base: add page"
+git commit -m "$base: add page"
 git push origin $base
