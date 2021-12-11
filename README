@@ -4,4 +4,4 @@ Initialize a local git repo with your fork of tldr-pages set as origin,
 run this script as shown below, then submit the pull request in github.
 
 Usage:
-$ new_command {{command.md}}
+$ new_command.sh {{command.md}}
