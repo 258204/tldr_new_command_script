@@ -22,14 +22,14 @@ then
 fi
 
 tldrl $1
-if [ $? ] then;
+if [ $? -ne 0 ];
 then
-	echo "Lint error!\n"
+	echo "Lint error!"
 	exit 1
 fi
 
-echo base="$(basename $1 .md)"
-echo git checkout -b $base
-echo git add $1
-echo git commit -S -m "$base: add page"
-echo git push origin $base
+base="$(basename $1 .md)"
+git checkout -b $base
+git add $1
+git commit -S -m "$base: add page"
+git push origin $base
