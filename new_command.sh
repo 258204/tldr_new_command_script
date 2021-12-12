@@ -2,34 +2,43 @@
 # Lints, commits, and  pushes a new command to an appropriately named branch.
 
 display_usage() {
-	echo -e "\nUsage: $0 {{command.md}} \n"
+	echo -e "\nUsage:\n bash $0 {{command.md}} \n"
 	}
 
 while getopts :h option; do
-	case $option in
-		h) display_usage
-			exit 0;;
-		?) echo "Invalid option -- $OPTARG"
-			display_usage
-			exit 1;;
-	esac
+        case $option in
+                h) display_usage
+                        exit 0;;
+                ?) echo "Invalid option -- $OPTARG"
+                        display_usage
+                        exit 1;;
+        esac
 done
 
 if ! [[ $# -eq 1 ]];
 then
-	display_usage
-	exit 1
+        display_usage
+        exit 1
 fi
 
-tldrl $1
-if [ $? ] then;
+
+if command -v tldrl >/dev/null ; 
 then
-	echo "Lint error!\n"
-	exit 1
+	tldrl $1 
+
+	if [ $? -ne 0 ]; 
+	then
+		echo "Lint error!"
+		exit 1
+	fi
+else 
+		echo "TLDR linter not installed!"
+		exit 1
 fi
 
-echo base="$(basename $1 .md)"
-echo git checkout -b $base
-echo git add $1
-echo git commit -S -m "$base: add page"
-echo git push origin $base
+
+base="$(basename $1 .md)"
+git checkout -b $base
+git add $1
+git commit -m "$base: add page"
+git push origin $base
