@@ -38,7 +38,7 @@ teardown() {
   pass=$(git ls-remote --heads origin pass)
   if [[ $pass != "" ]]; then
     git checkout $branch
-    git branch -d pass
+    git branch -D pass
     git push origin --delete pass
     cp pass.md.bak pass.md
   fi
