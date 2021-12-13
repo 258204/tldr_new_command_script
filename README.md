@@ -5,4 +5,11 @@ then run this script as shown below, then submit the pull request in github.
 
 Usage:
 
+- Lint and submit a new page:
+
 `$ bash new_command.sh {{command.md}}`
+
+- Lint and submit a new page, exiting if tldr isn't installed:
+
+`$ bash new_command.sh -l {{command.md}}`
+

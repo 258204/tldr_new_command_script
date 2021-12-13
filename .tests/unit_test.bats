@@ -18,7 +18,7 @@ setup() {
 }
 
 @test "tldrl fail" {
-  run bash ../new_command.sh -fl fail.md
+  run bash ../new_command.sh fail.md
   [ $status -eq 1 ]
   [[ $(git ls-remote --heads origin fail) == "" ]]
 }
