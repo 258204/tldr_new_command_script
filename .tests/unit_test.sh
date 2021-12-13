@@ -13,18 +13,21 @@
   [ $status -eq 1 ]
 }
 
-@test "lint fail" {
+@test "tldrl fail" {
   run bash ../new_command.sh fail.md
   [ $status -eq 1 ]
   [[ $(git ls-remote --heads origin fail) == "" ]]
 }
 
-@test "lint pass" {
+@test "tldrl pass" {
   run bash ../new_command.sh pass.md
   [ $status -eq 0 ]
   [[ $(git ls-remote --heads origin pass) != "" ]]
 }
 
+@test "shell check" {
+	shellcheck ../new_command.sh
+}
 
 teardown() {
   # clean up the mess git makes
@@ -37,9 +40,9 @@ teardown() {
   fi
 
   fail=$(git ls-remote --heads origin fail)
-  if [[ $pass != "" ]]; then
-    git checkout master
-    git branch -d fail
+  if [[ $fail != "" ]]; then
+    git checkout -
+    git branch -D fail
     git push origin --delete fail
     cp fail.md.bak fail.md
   fi
