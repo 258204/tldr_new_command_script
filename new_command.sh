@@ -5,10 +5,13 @@ display_usage() {
 	echo -e "\nUsage:\n bash $0 {{command.md}} \n"
 	}
 
-while getopts :h option; do
+force_lint=false
+
+while getopts :hl option; do
         case $option in
                 h) display_usage
                         exit 0;;
+		l) force_lint=true;;
                 ?) echo "Invalid option -- $OPTARG"
                         display_usage
                         exit 1;;
@@ -31,7 +34,10 @@ then
 	fi
 else 
 		echo "TLDR linter not installed!"
-		exit 1
+		if $force_lint:
+	       	then
+			exit 1
+		fi
 fi
 
 
