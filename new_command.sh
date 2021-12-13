@@ -24,9 +24,7 @@ fi
 
 if command -v tldrl >/dev/null ; 
 then
-	tldrl $1 
-
-	if [ $? -ne 0 ]; 
+	if ! tldrl "$1"; 
 	then
 		echo "Lint error!"
 		exit 1
@@ -37,8 +35,8 @@ else
 fi
 
 
-base="$(basename $1 .md)"
-git checkout -b $base
-git add $1
+base="$(basename "$1" .md)"
+git checkout -b "$base"
+git add "$1"
 git commit -m "$base: add page"
-git push origin $base
+git push origin "$base"
